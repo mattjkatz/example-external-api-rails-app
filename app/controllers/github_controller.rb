@@ -8,4 +8,11 @@ class GithubController < ApplicationController
     render json: response.parse
   end
 
+  def profile
+    response = HTTP
+      .headers("Authorization" => "Token #{params[:github_access_token]}")
+      .get("https://api.github.com/user")
+    render json: response.parse
+  end
+
 end
